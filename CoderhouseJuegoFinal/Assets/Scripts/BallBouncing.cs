@@ -14,6 +14,9 @@ public class BallBouncing : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] AudioSource clip;
     [SerializeField] AudioSource music;
+    [SerializeField] AudioSource godlikeSound;
+    [SerializeField] AudioSource finishGame;
+    [SerializeField] ParticleSystem finishParticle;
     
 
 
@@ -22,6 +25,7 @@ public class BallBouncing : MonoBehaviour
     private float _horizontalMove;
     private float _verticalMove;
     private float _range = 1000f;
+    private bool _soundOneTime = false;
 
 
 
@@ -61,34 +65,38 @@ public class BallBouncing : MonoBehaviour
     bool alreadyTouched = false;
     void OnCollisionEnter(Collision col)
     {
-        
-        if (col.transform.CompareTag("Floor"))
+
+        if (col.transform.CompareTag("Floor") && _soundOneTime == false)
         {
             speed = 20f;
-            
+            godlikeSound.PlayOneShot(godlikeSound.clip, 1f);
+            _soundOneTime = true;
+
+
         }
-        
+
+
         if (col.transform.CompareTag("SpeedFloor"))
         {
             speed = 80f;
         }
-        
+
 
 
 
         if (col.transform.CompareTag("Ground") && alreadyTouched == false)
         {
-            
-            
+
+
             Instantiate(hitParticle, transform.position, Quaternion.LookRotation(transform.position));
             clip.Play();
-                
+
             rb.AddForce(Vector3.up * bouncing, ForceMode.Force);
             Debug.Log("saltando");
-            
 
-           
-        
+
+
+
 
 
 
@@ -99,8 +107,8 @@ public class BallBouncing : MonoBehaviour
 
                 Debug.Log("Desactivando kinematic");
             }
-            
-            
+
+
 
 
 
@@ -123,6 +131,12 @@ public class BallBouncing : MonoBehaviour
                 obstacle.BreakWall();
                 Debug.Log("Explosion");
             }
+        }
+        else if (col.transform.CompareTag("FinishGame"))
+        {
+            finishGame.Play();
+            finishParticle.Play();
+            music.Stop();
         }
         
 
