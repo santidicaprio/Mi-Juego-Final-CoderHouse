@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // almacenar en un array o lista todos los obstaculos
+    // en el obstaculo, guardar la posicion inicial
+    // cuando toque una tecla, el gameManager va a ejecutar el resetObstacles, que lo que va a hacer es recorrer todos los obstaculos y reiniciarlos a su posicion inicial
+    public static GameManager instance;
+    public Obstacle[] obstaclesArray;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
     void Start()
+    {
+        //obstaclesArray[0].DeactiveKinematic();
+    }
+
+    
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetObstacles()
     {
-        
+
     }
 }

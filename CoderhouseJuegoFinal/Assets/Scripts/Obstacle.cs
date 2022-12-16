@@ -4,10 +4,11 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] Transform positionExplosion;
+    [SerializeField] Vector3 initialPos;
     
     void Start()
     {
-
+        initialPos = gameObject.transform.localPosition;
     }
 
 

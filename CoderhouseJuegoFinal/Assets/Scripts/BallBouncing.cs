@@ -13,6 +13,7 @@ public class BallBouncing : MonoBehaviour
     [SerializeField] Transform pointRaycast;
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] AudioSource clip;
+    [SerializeField] AudioSource music;
     
 
 
@@ -30,7 +31,7 @@ public class BallBouncing : MonoBehaviour
 
     void Start()
     {
-
+        music.Play();
     }
 
 
@@ -63,7 +64,7 @@ public class BallBouncing : MonoBehaviour
         
         if (col.transform.CompareTag("Floor"))
         {
-            speed = 40f;
+            speed = 20f;
             
         }
         
@@ -77,20 +78,25 @@ public class BallBouncing : MonoBehaviour
 
         if (col.transform.CompareTag("Ground") && alreadyTouched == false)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Instantiate(hitParticle, transform.position, Quaternion.LookRotation(transform.position));
-
-                clip.Play();
-                rb.AddForce(Vector3.up * bouncing, ForceMode.Force);
-                Debug.Log("saltando");
-            }
             
+            
+            Instantiate(hitParticle, transform.position, Quaternion.LookRotation(transform.position));
+            clip.Play();
+                
+            rb.AddForce(Vector3.up * bouncing, ForceMode.Force);
+            Debug.Log("saltando");
+            
+
+           
+        
+
+
 
             var obstacle = col.gameObject.GetComponent<Obstacle>();
             if (obstacle != null)
             {
                 obstacle.DeactiveKinematic();
+
                 Debug.Log("Desactivando kinematic");
             }
             
