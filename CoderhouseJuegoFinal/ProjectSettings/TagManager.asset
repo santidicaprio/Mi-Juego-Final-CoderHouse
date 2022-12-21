@@ -11,6 +11,7 @@ TagManager:
   - SpeedFloor
   - Coin
   - FinishGame
+  - GM
   layers:
   - Default
   - TransparentFX

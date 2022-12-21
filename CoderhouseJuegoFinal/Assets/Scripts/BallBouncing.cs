@@ -17,6 +17,7 @@ public class BallBouncing : MonoBehaviour
     [SerializeField] AudioSource godlikeSound;
     [SerializeField] AudioSource finishGame;
     [SerializeField] ParticleSystem finishParticle;
+    [SerializeField] ParticleSystem rain;
     
 
 
@@ -35,14 +36,15 @@ public class BallBouncing : MonoBehaviour
 
     void Start()
     {
-        music.Play();
+
+        Invoke("Music", 7f);
     }
 
 
     void Update()
     {
         ParticleEffect();
-        SlowTime();
+        
     }
 
     void FixedUpdate()
@@ -70,6 +72,7 @@ public class BallBouncing : MonoBehaviour
         {
             speed = 20f;
             godlikeSound.PlayOneShot(godlikeSound.clip, 1f);
+            rain.Play();
             _soundOneTime = true;
 
 
@@ -160,18 +163,7 @@ public class BallBouncing : MonoBehaviour
         }
     }
 
-    void SlowTime()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Time.timeScale = 0.5f;
-
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 1;
-        }
-    }
+    
     void BallMovement()
     {
         _horizontalMove = Input.GetAxis("Horizontal");
@@ -218,5 +210,9 @@ public class BallBouncing : MonoBehaviour
                 coin.Coin();                
             }
         }
+    }
+    void Music()
+    {
+        music.Play();
     }
 }
