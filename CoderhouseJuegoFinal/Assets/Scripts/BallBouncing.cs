@@ -12,13 +12,16 @@ public class BallBouncing : MonoBehaviour
     [SerializeField] float maxSpeed = 30f;
     [SerializeField] Transform pointRaycast;
     [SerializeField] ParticleSystem hitParticle;
-    [SerializeField] AudioSource clip;
-    [SerializeField] AudioSource music;
-    [SerializeField] AudioSource godlikeSound;
-    [SerializeField] AudioSource finishGame;
+    [SerializeField] AudioSource audioSource;    
     [SerializeField] ParticleSystem finishParticle;
     [SerializeField] ParticleSystem rain;
+
+    [SerializeField] AudioClip deadSound;
+    [SerializeField] AudioClip godLike;
+    [SerializeField] AudioClip bounce;
+    [SerializeField] AudioClip finishGame;
     
+     
 
 
 
@@ -71,7 +74,7 @@ public class BallBouncing : MonoBehaviour
         if (col.transform.CompareTag("Floor") && _soundOneTime == false)
         {
             speed = 20f;
-            godlikeSound.PlayOneShot(godlikeSound.clip, 1f);
+            audioSource.PlayOneShot(godLike, 0.5f);
             rain.Play();
             _soundOneTime = true;
 
@@ -92,7 +95,7 @@ public class BallBouncing : MonoBehaviour
 
 
             Instantiate(hitParticle, transform.position, Quaternion.LookRotation(transform.position));
-            clip.Play();
+            audioSource.PlayOneShot(bounce);
 
             rb.AddForce(Vector3.up * bouncing, ForceMode.Force);
             Debug.Log("saltando");
@@ -137,9 +140,10 @@ public class BallBouncing : MonoBehaviour
         }
         else if (col.transform.CompareTag("FinishGame"))
         {
-            finishGame.Play();
+            audioSource.PlayOneShot(finishGame, 0.4f);
+            
             finishParticle.Play();
-            music.Stop();
+            
         }
         
 
@@ -211,8 +215,5 @@ public class BallBouncing : MonoBehaviour
             }
         }
     }
-    void Music()
-    {
-        music.Play();
-    }
+    
 }

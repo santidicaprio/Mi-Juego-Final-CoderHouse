@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckPoints : MonoBehaviour
-{
+{          
     private GameMaster gm;
     void Start()
     {
@@ -18,8 +18,7 @@ public class CheckPoints : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Sphere"))
-        {
-            Debug.Log("Colisione con la esfera");
+        {            
             gm.lastCheckPointPos = transform.position;
         }
     }

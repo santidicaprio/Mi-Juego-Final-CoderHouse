@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerPos : MonoBehaviour
 {
     private GameMaster gm;
+    [SerializeField] AudioSource deadSound;
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -23,6 +24,7 @@ public class PlayerPos : MonoBehaviour
     {
         if (col.CompareTag("Dead"))
         {
+            deadSound.Play();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
