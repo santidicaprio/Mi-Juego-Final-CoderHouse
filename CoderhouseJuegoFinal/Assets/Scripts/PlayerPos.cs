@@ -13,12 +13,21 @@ public class PlayerPos : MonoBehaviour
 
     }
 
-    
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("Dead"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+
+
+
 }

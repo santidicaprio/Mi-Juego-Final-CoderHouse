@@ -12,6 +12,7 @@ TagManager:
   - Coin
   - FinishGame
   - GM
+  - Dead
   layers:
   - Default
   - TransparentFX

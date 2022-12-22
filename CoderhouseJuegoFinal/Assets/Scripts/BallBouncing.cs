@@ -37,7 +37,7 @@ public class BallBouncing : MonoBehaviour
     void Start()
     {
 
-        Invoke("Music", 7f);
+        Invoke("Music", 4f);
     }
 
 

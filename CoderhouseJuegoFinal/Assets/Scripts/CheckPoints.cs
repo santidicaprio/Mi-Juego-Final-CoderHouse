@@ -19,6 +19,7 @@ public class CheckPoints : MonoBehaviour
     {
         if (col.CompareTag("Sphere"))
         {
+            Debug.Log("Colisione con la esfera");
             gm.lastCheckPointPos = transform.position;
         }
     }
