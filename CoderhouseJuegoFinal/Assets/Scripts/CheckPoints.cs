@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPoints : MonoBehaviour
 {          
     private GameMaster gm;
+    
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -18,8 +19,9 @@ public class CheckPoints : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Sphere"))
-        {            
+        {
             gm.lastCheckPointPos = transform.position;
         }
+        
     }
 }

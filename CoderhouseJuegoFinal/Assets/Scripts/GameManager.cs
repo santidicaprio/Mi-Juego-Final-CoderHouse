@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // almacenar en un array o lista todos los obstaculos
-    // en el obstaculo, guardar la posicion inicial
-    // cuando toque una tecla, el gameManager va a ejecutar el resetObstacles, que lo que va a hacer es recorrer todos los obstaculos y reiniciarlos a su posicion inicial
+    
     public static GameManager instance;
     public Obstacle[] obstaclesArray;
 
