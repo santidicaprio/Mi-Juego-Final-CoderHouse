@@ -141,7 +141,8 @@ public class BallBouncing : MonoBehaviour
         else if (col.transform.CompareTag("FinishGame"))
         {
             audioSource.PlayOneShot(finishGame, 0.4f);
-            GetComponent<Panel>().SlowTime();
+            GameMaster.instance.ResetCheckpoint();
+            GetComponent<Panel>().SlowTime();           
             finishParticle.Play();
             
         }
@@ -204,16 +205,6 @@ public class BallBouncing : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.transform.CompareTag("Coin"))
-        {
-            var coin = col.gameObject.GetComponent<CoinBehaviour>();
-            if (coin != null)
-            {
-                coin.Coin();                
-            }
-        }
-    }
+    
     
 }
