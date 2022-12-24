@@ -6,7 +6,6 @@ public class SceneManagement : MonoBehaviour
    
     void Start()
     {
-        QuitGame();
     }
 
     
