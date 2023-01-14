@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Panel : MonoBehaviour
 {
     [SerializeField] GameObject panel;
+    [SerializeField] GameObject panelTwo;
     [SerializeField] GameObject respawnPosition;
     void Start()
     {
@@ -13,6 +14,7 @@ public class Panel : MonoBehaviour
     
     void Update()
     {
+        EscapeMenu();
     }
     public void SlowTime()
     {
@@ -31,5 +33,20 @@ public class Panel : MonoBehaviour
         SceneManager.LoadScene(0);
         panel.SetActive(false);
         Time.timeScale = 1f;
+    }
+    public void EscapeMenu()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Time.timeScale = 0f;
+            panelTwo.SetActive(true);
+
+        }       
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        panelTwo.SetActive(false);
     }
 }
